@@ -1,0 +1,111 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: µVision V5.35.0.0
+Copyright (C) 2021 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: Brady Forbush, Utah State University, LIC=----
+ 
+Tool Versions:
+Toolchain:       MDK-Lite  Version: 5.35.0.2
+Toolchain Path:  C:\Keil_v5\ARM\ARMCLANG\Bin
+C Compiler:      ArmClang.exe V6.16
+Assembler:       Armasm.exe V6.16
+Linker/Locator:  ArmLink.exe V6.16
+Library Manager: ArmAr.exe V6.16
+Hex Converter:   FromElf.exe V6.16
+CPU DLL:         SARMCM3.DLL V5.35.0.2
+Dialog DLL:      DCM.DLL V1.17.3.0
+Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V3.0.9.0
+Dialog DLL:      TCM.DLL V1.53.0.0
+ 
+<h2>Project:</h2>
+C:\Users\A02248990\Documents\ece3710\Lab8\Lab8.uvprojx
+Project File Date:  11/11/2021
+
+<h2>Output:</h2>
+*** Using Compiler 'V6.16', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
+Rebuild target 'Target 1'
+assembling core_cm4_constants.s...
+assembling startup_stm32l476xx.s...
+assembling stm32l476xx_constants.s...
+Source Code/main.c(16): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+        GPIOA->MODER &= ~(0xF << (2 * 2));
+                     ~~ ^~~~~~~~~~~~~~~~~
+Source Code/main.c(23): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+        GPIOA->PUPDR &= ~(0xF << (2 * 2));
+                     ~~ ^~~~~~~~~~~~~~~~~
+Source Code/main.c(26): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+        GPIOA->OTYPER &= ~(0x3 << 2);
+                      ~~ ^~~~~~~~~~~
+Source Code/main.c(105): warning: implicit conversion loses integer precision: 'volatile uint16_t' (aka 'volatile unsigned short') to 'uint8_t' (aka 'unsigned char') [-Wimplicit-int-conversion]
+                buffer[i] = USARTx->RDR;
+                          ~ ~~~~~~~~^~~
+Source Code/main.c(110): warning: comparison of integers of different signs: 'int' and 'uint32_t' (aka 'unsigned int') [-Wsign-compare]
+        for (int i = 0; i < nBytes; i++) {
+                        ~ ^ ~~~~~~
+Source Code/main.c(129): warning: implicit conversion loses integer precision: 'volatile uint32_t' (aka 'volatile unsigned int') to 'uint16_t' (aka 'unsigned short') [-Wimplicit-int-conversion]
+        uint16_t tempNum = ADC1->DR;
+                 ~~~~~~~   ~~~~~~^~
+Source Code/main.c(131): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
+        return (((80.0) / (float)(ts_cal2 - ts_cal1)) * (float)(tempNum - ts_cal1)) + 80.0;
+        ~~~~~~ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~
+Source Code/main.c(131): warning: implicit conversion increases floating-point precision: 'float' to 'double' [-Wdouble-promotion]
+        return (((80.0) / (float)(ts_cal2 - ts_cal1)) * (float)(tempNum - ts_cal1)) + 80.0;
+                                                      ~ ^~~~~~~~~~~~~~~~~~~~~~~~~~
+Source Code/main.c(131): warning: implicit conversion increases floating-point precision: 'float' to 'double' [-Wdouble-promotion]
+        return (((80.0) / (float)(ts_cal2 - ts_cal1)) * (float)(tempNum - ts_cal1)) + 80.0;
+                        ~ ^~~~~~~~~~~~~~~~~~~~~~~~~~
+Source Code/main.c(163): warning: passing 'char [20]' to parameter of type 'uint8_t *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+                        usart_write(USART2, arr, (uint32_t)count);
+                                            ^~~
+Source Code/main.c(109): note: passing argument to parameter 'buffer' here
+void usart_write(USART_TypeDef *USARTx, uint8_t *buffer, uint32_t nBytes) {
+                                                 ^
+Source Code/main.c(167): warning: code will never be executed [-Wunreachable-code]
+        while(1);
+              ^
+Source Code/main.c(120): warning: no previous extern declaration for non-static variable 'ts_cal1' [-Wmissing-variable-declarations]
+uint16_t ts_cal1;
+         ^
+Source Code/main.c(120): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+uint16_t ts_cal1;
+^
+Source Code/main.c(121): warning: no previous extern declaration for non-static variable 'ts_cal2' [-Wmissing-variable-declarations]
+uint16_t ts_cal2;
+         ^
+Source Code/main.c(121): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+uint16_t ts_cal2;
+^
+13 warnings generated.
+compiling main.c...
+linking...
+Program Size: Code=7600 RO-data=584 RW-data=0 ZI-data=1640  
+".\Objects\Lab8.axf" - 0 Error(s), 13 Warning(s).
+
+<h2>Software Packages used:</h2>
+
+Package Vendor: ARM
+                http://www.keil.com/pack/ARM.CMSIS.5.8.0.pack
+                ARM.CMSIS.5.8.0
+                CMSIS (Common Microcontroller Software Interface Standard)
+   * Component: CORE Version: 5.5.0
+
+Package Vendor: Keil
+                http://www.keil.com/pack/Keil.STM32L4xx_DFP.2.6.0.pack
+                Keil.STM32L4xx_DFP.2.6.0
+                STMicroelectronics STM32L4 Series Device Support, Drivers and Examples
+
+<h2>Collection of Component include folders:</h2>
+  .\RTE\_Target_1
+  C:\Users\Admin\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include
+  C:\Users\Admin\AppData\Local\Arm\Packs\Keil\STM32L4xx_DFP\2.6.0\Drivers\CMSIS\Device\ST\STM32L4xx\Include
+
+<h2>Collection of Component Files used:</h2>
+
+   * Component: ARM::CMSIS:CORE:5.5.0
+Build Time Elapsed:  00:00:00
+</pre>
+</body>
+</html>

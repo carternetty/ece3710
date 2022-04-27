@@ -1,0 +1,37 @@
+read keypad()
+		send 0 on pb4
+		read columns
+		send 0 on pb5
+		read columns
+		send 0 on pb6
+		read columns
+		send 0 on pb7
+		read columns
+		
+		return char of button pressed (look up table sortof thing)
+display_result(char, charcount)
+	if char count is greater than 16 send to line 1
+	if char count is less than 16 send to line 0
+	LCD_WriteData(char, line) //already written
+
+
+
+//include files from lab 4
+
+add initializing stage:
+	initialize clock for gpioc
+	intialize gpiob moder to output for pins 4-7
+	***set otype for same pins ^^ to open drain**** //this helps us not release the magic smoke.
+	initialize gpioc moder to input for pins 0-3
+
+run lcd_init()
+clear lcd
+int charcount
+loop if charchount < 32
+
+	loop
+		result = read_keypad()
+	delay
+	display_result
+	increment charcount
+dead loop

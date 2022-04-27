@@ -1,0 +1,56 @@
+;******************** (C) Yifeng ZHU *******************************************
+; @file    main.s
+; @author  Yifeng Zhu
+; @date    May-17-2015
+; @note
+;           This code is for the book "Embedded Systems with ARM Cortex-M 
+;           Microcontrollers in Assembly Language and C, Yifeng Zhu, 
+;           ISBN-13: 978-0982692639, ISBN-10: 0982692633
+; @attension
+;           This code is provided for education purpose. The author shall not be 
+;           held liable for any direct, indirect or consequential damages, for any 
+;           reason whatever. More information can be found from book website: 
+;           http:;www.eece.maine.edu/~zhu/book
+;*******************************************************************************
+
+
+	INCLUDE core_cm4_constants.s
+	INCLUDE stm32l476xx_constants.s
+	
+	AREA    main, CODE, READONLY
+	EXPORT	__main
+	ENTRY			
+				
+__main	PROC
+		
+    ; Enable the clock to GPIO Port A	
+	LDR r0, =RCC_BASE 				; set r0 to base addresss of rcc
+	LDR r1, [r0, #RCC_AHB2ENR] 			; load r1  (this is an address + offset)
+	ORR r1, r1, #RCC_AHB2ENR_GPIOAEN 		; or r1 with the constant and store it in r1
+	STR r1, [r0, #RCC_AHB2ENR]			; store new value back into memory where we got it
+	
+	; MODE: 00: Input mode, 01: General purpose output mode
+    ;       10: Alternate function mode, 11: Analog mode (reset state)
+	
+	; Turn on the LED
+	LDR r0, =GPIOA_BASE                  		;set r0 to the base addy of GPIOA
+	LDR r1, [r0, #GPIO_MODER]             		; use the constant as an offset from r0, store in r1
+	AND r1, r1, #0xFFFFF3FF				; modify just the 3rd byte of r1
+	ORR r1, r1, #0x00000400				; modify just the 3rd byte of r1 so it is 00000100 (4)
+	STR r1, [r0, #GPIO_MODER]			; store value of r1 back into the memory
+	LDR r1, [r0, #GPIO_ODR]				; load a new value into r1
+
+stop	
+	ORR r1, r1, #0x00000020             		; modify just the second byte of r1
+	STR r1, [r0, #GPIO_ODR]				; store value back into memory
+	AND r1, r1, #0xFFFFFFDF				; Modify just the second byte of r1 (this byte contains the pin we need to change) 
+	STR r1, [r0, #GPIO_ODR]				; store value back into memory
+	
+	
+ 	B 		stop				; infinite loop
+
+	ENDP
+					
+	ALIGN			
+
+	END
